@@ -14,9 +14,9 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, date } = req.body;
 
-    const newName = { name: name };
+    const newName = { name: name, date: date };
 
     await db.collection("names").insertOne(newName);
 
