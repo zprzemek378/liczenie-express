@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://zprzemek378.github.io/fresh-car-rental/",
+  "https://zprzemek378.github.io/liczenie/",
   "https://github.io",
   "https://zprzemek378.github.io",
 ];
@@ -27,27 +28,11 @@ app.use(function (req, res, next) {
 
 app.use(express.static("public"));
 
-console.log("helloppp");
-
 app.use(cookieParser());
 
-const trailersRouter = require("./routes/trailers");
-const trucksRouter = require("./routes/trucks");
-const placesRouter = require("./routes/places");
-const usersRouter = require("./routes/users");
-const loggedInRouter = require("./routes/loggedIn");
-const refreshToken = require("./routes/refreshToken");
-const ordersRouter = require("./routes/orders");
-const allOrdersRouter = require("./routes/allOrders");
+const slashRouter = require("./routes/slashRouter");
 
-app.use("/trailers", trailersRouter);
-app.use("/trucks", trucksRouter);
-app.use("/places", placesRouter);
-app.use("/users", usersRouter);
-app.use("/loggedIn", loggedInRouter);
-app.use("/refreshToken", refreshToken);
-app.use("/orders", ordersRouter);
-app.use("/allOrders", allOrdersRouter);
+app.use("/", slashRouter);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
